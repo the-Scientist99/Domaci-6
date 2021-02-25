@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css2?family=Newsreader:ital@0;1&display=swap");
+
+body {
+  font-family: "Newsreader", serif;
+}
+
+a#disabled {
+  /* Make the disabled links grayish*/
+  color: gray;
+  /* And disable the pointer events */
+  pointer-events: none;
+}
+
+.btn-pretraga {
+  background-color: rgb(241, 217, 81);
+}
+
+.cijena {
+  color: rgb(241, 217, 81);
+  font-weight: 600;
+  font-size: 1.3em;
+}
+
+.btn-opcije {
+  border-radius: 0px;
+  transition: all 0.5s;
+}
+
+.btn-opcije:hover {
+  border-radius: 0px;
+  transition: all 0.5s;
+}
+
+.btn-detalji {
+  color: rgb(241, 217, 81);
+  border: 1px solid rgb(241, 217, 81);
+}
+
+.btn-detalji:hover {
+  color: white;
+  background-color: rgb(241, 217, 81);
+}
+
+.btn-izmijeni {
+  color: rgb(92, 92, 248);
+  border: 1px solid rgb(92, 92, 248);
+}
+
+.btn-izmijeni:hover {
+  color: white;
+  background-color: rgb(92, 92, 248);
+}
+
+.btn-izbrisi {
+  color: rgb(243, 50, 50);
+  border: 1px solid rgb(243, 50, 50);
+}
+
+.btn-izbrisi:hover {
+  color: white;
+  background-color: rgb(243, 50, 50);
+}
