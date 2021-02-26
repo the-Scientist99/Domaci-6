@@ -17,6 +17,8 @@ isset($_POST['status'])                                     ? $status = $_POST['
 isset($_POST['dat_prodaje'])                                ? $dat_prodaje = $_POST['dat_prodaje']     : $ind = false;
 isset($_POST['opis'])                                       ? $opis = $_POST['opis']                   : $ind = false;
 
+if ($dat_prodaje == "") $dat_prodaje = date("Y-m-d");
+
 if (!$ind)
     redirect("../index.php?msg=e_err");
 

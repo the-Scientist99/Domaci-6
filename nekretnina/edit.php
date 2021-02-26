@@ -7,8 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] != "GET")
 
 isset($_GET['id']) ? $id = $_GET['id'] : exit("Error!");
 
-$q = "SELECT * FROM nekretnina WHERE id = $id";
-$res = mysqli_query($dbconn, $q);
+$res = mysqli_query($dbconn, "SELECT * FROM nekretnina WHERE id = $id");
 $nekretnina = mysqli_fetch_assoc($res);
 
 $arr_grad = vratiti("grad");
@@ -96,13 +95,13 @@ $arr_tip_oglasa = vratiti("tip_oglasa");
                             <label class="form-check-label" for="inlineRadio1">Dostupno</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="status" id="inlineRadio2" value="prodato" <?= $e ?>>
+                            <input class="form-check-input" type="radio" name="status" id="inlineRadio2" value="prodato" <?= $e  ?>>
                             <label class="form-check-label" for="inlineRadio2">Prodato</label>
                         </div>
                     </div>
-                    <div class="text-center my-2" id="dat_p">
+                    <div class="text-center my-2">
                         <label for="dat_prodaje">DATUM PRODAJE</label>
-                        <input type="date" name="dat_prodaje" id="dat_prodaje" class="form-control mt-1" value="<?= $nekretnina['dat_prodaje'] ?>">
+                        <input type="date" name="dat_prodaje" id="dat_prodaje" class="form-control mt-1" <?= $d ?>>
                     </div>
                     <div class="text-center my-2">
                         <label for="opis">OPIS</label>

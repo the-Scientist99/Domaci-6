@@ -20,10 +20,11 @@ function vratiti($table_name)
     return $arr;
 }
 
-function izbrisati($table_name, $id)
+function izbrisati($table_name, $id, $id_name)
 {
     global $dbconn;
-    return mysqli_query($dbconn, "DELETE FROM $table_name WHERE id = $id");
+    $res = mysqli_query($dbconn, "DELETE FROM $table_name WHERE $id_name = $id");
+    return $res;
 }
 
 function dodati($table_name, $arr)
@@ -57,14 +58,14 @@ function izmijeni($table_name, $arr, $id)
         return false;
 }
 
-function selectOptionsPOST($arr, $name)
+function selectOptionsGET($arr, $name)
 {
     for ($i = 0; $i < count($arr); $i++) {
         $element = $arr[$i];
         $id = $element['id'];
         $sel = "";
-        if (isset($_POST[$name]))
-            if ($_POST[$name] == $id)
+        if (isset($_GET[$name]))
+            if ($_GET[$name] == $id)
                 $sel = "selected";
         echo "<option value='$id' $sel>" . ucfirst($element['naziv']) . "</option>";
     }
@@ -91,13 +92,13 @@ function selectOptionsEdit($arr, $name, $nekretnina)
     }
 }
 
-function validacijaPOST($arr, $arr_names)
+function validacijaPretrage($arr, $arr_names)
 {
     $arr = [" WHERE 1=1 "];
     for ($i = 0; $i < count($arr_names); $i++) {
         $name = $arr_names[$i];
-        if (isset($_POST[$name]) && $_POST[$name] >= "0") {
-            $val = $_POST[$name];
+        if (isset($_GET[$name]) && $_GET[$name] >= "0") {
+            $val = $_GET[$name];
             switch ($name) {
                 case "grad":
                     $arr[] = " n.grad_id = $val ";
@@ -120,8 +121,21 @@ function validacijaPOST($arr, $arr_names)
                 case "max_cijena":
                     $arr[] = " n.cijena <= $val ";
                     break;
+                default:
+                    break;
             }
         }
     }
     return $arr;
+}
+
+function validacija($key, $type)
+{
+    if ($type == "GET") {
+        if (isset($_GET[$key]) && $_GET[$key] >= "0") return $_GET[$key];
+        else return "";
+    } else {
+        if (isset($_POST[$key]) && $_POST[$key] >= "0") return $_GET[$key];
+        else return "";
+    }
 }

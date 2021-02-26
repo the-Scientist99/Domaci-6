@@ -70,7 +70,7 @@ $arr_tip_oglasa = vratiti("tip_oglasa");
                     </div>
                     <div class="text-center my-2">
                         <label for="cijena">CIJENA</label>
-                        <input type="number" name="cijena" id="cijena" class="form-control mt-1" placeholder="Unesite cijenu" required>
+                        <input type="number" name="cijena" id="cijena" class="form-control mt-1" step="0.01" placeholder="Unesite cijenu" required>
                     </div>
                     <div class="text-center my-2">
                         <label for="god_izgradnje">GODINA IZGRADNJE</label>

@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] != "GET")
 
 isset($_GET['id']) ? $id = $_GET['id'] : $id = "";
 
-if (izbrisati("tip_nekretnine", $id))
+if (izbrisati("tip_nekretnine", $id, 'id'))
     redirect("./tip_nek_crud.php?msg=del_suc");
 else
     redirect("./tip_nek_crud.php?msg=del_err");

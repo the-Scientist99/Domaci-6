@@ -69,7 +69,7 @@ $res = vratiti('tip_nekretnine');
                                     </a>
                                 </td>";
                         echo "  <td>
-                                    <a class='btn btn-danger' href='./izbrisi_tip_n.php?id=$id'>
+                                    <a class='btn btn-danger' onclick='brisi($id)'>
                                         <i class='far fa-trash-alt'></i>
                                     </a>
                                 </td>";
@@ -98,6 +98,12 @@ $res = vratiti('tip_nekretnine');
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+        <script>
+            const brisi = (id) => {
+                if (confirm("Da li stvarno želite da izbrišete?"))
+                    location.href = "./izbrisi_tip_n.php?id=" + id;
+            }
+        </script>
 </body>
 
 </html>

@@ -6,16 +6,19 @@ if ($_SERVER['REQUEST_METHOD'] != "POST")
     exit("Neovlašćen pristup!");
 
 $ind = true;
-isset($_POST['grad'])          && $_POST['grad'] != "0"          ? $grad = $_POST['grad']                   : $ind = false;
-isset($_POST['tip_o'])         && $_POST['tip_o'] != "0"         ? $tip_o = $_POST['tip_o']                 : $ind = false;
-isset($_POST['tip_n'])         && $_POST['tip_n'] != "0"         ? $tip_n = $_POST['tip_n']                 : $ind = false;
+isset($_POST['grad'])          && $_POST['grad'] > "0"           ? $grad = $_POST['grad']                   : $ind = false;
+isset($_POST['tip_o'])         && $_POST['tip_o'] > "0"          ? $tip_o = $_POST['tip_o']                 : $ind = false;
+isset($_POST['tip_n'])         && $_POST['tip_n'] > "0"          ? $tip_n = $_POST['tip_n']                 : $ind = false;
 isset($_POST['povrsina'])      && is_numeric($_POST['povrsina']) ? $povrsina = $_POST['povrsina']           : $ind = false;
 isset($_POST['cijena'])        && is_numeric($_POST['cijena'])   ? $cijena = $_POST['cijena']               : $ind = false;
 isset($_POST['god_izgradnje']) && $_POST['god_izgradnje'] != ""  ? $god_izgradnje = $_POST['god_izgradnje'] : $god_izgradnje = "";
 isset($_POST['opis'])                                            ? $opis = $_POST['opis']                   : $opis = "";
 
-if (!$ind)
+if (!$ind) {
     redirect("./dodaj_nekretninu.php?msg=add_err");
+    exit;
+}
+
 
 $arr_n = [
     'grad_id' => $grad,
@@ -27,8 +30,11 @@ $arr_n = [
     'opis' => $opis
 ];
 
-if (!dodati('nekretnina', $arr_n))
+if (!dodati('nekretnina', $arr_n)) {
     redirect("./dodaj_nekretninu.php?msg=add_err");
+}
+
+$id = mysqli_insert_id($dbconn);
 
 if (isset($_FILES['fotografija'])) {
     $foto = $_FILES['fotografija'];
@@ -46,5 +52,6 @@ if (isset($_FILES['fotografija'])) {
         dodati('foto_nekretnine', $arr_f);
     }
     redirect("./dodaj_nekretninu.php?msg=add_suc");
-} else
+} else {
     redirect("./dodaj_nekretninu.php?msg=add_err");
+}
